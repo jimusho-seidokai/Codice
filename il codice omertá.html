@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Il Codice dell'Omertà</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b1b0e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
+        }
+
+        .book-container {
+            width: 850px;
+            max-width: 100%;
+            height: 1100px;
+            position: relative;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8);
+        }
+
+        .pages {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: #f4ecd6;
+            border: 2px solid #b59d7a;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 50px 60px;
+            background-color: #f4ecd6;
+            background-image: 
+                linear-gradient(165deg, rgba(140,100,60,0.05) 0%, transparent 30%),
+                repeating-linear-gradient(45deg, rgba(100,70,40,0.02) 0px, rgba(100,70,40,0.02) 2px, transparent 2px, transparent 6px);
+            transition: opacity 0.6s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            overflow-y: auto;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2b1b0e;
+            font-family: 'Cormorant Garamond', serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Numeração das páginas (exceto capas) */
+        .page:not(.cover)::after {
+            content: attr(data-page);
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 14px;
+            color: #8b7a6a;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        /* CAPAS (sem numeração, sem rolagem) */
+        .cover {
+            background: none !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: sepia(0.5) contrast(1.2) brightness(0.8);
+        }
+
+        /* CAPA INICIAL COM TEXTO DOURADO */
+        .cover-front {
+            position: relative;
+        }
+        .cover-front .cover-image {
+            filter: sepia(0.5) contrast(1.2) brightness(0.7);
+        }
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #f4ecd6;
+            text-shadow: 3px 3px 5px #000000;
+            background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.4) 100%);
+            padding: 40px;
+            pointer-events: none;
+        }
+        .cover-overlay h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 72px;
+            margin: 10px 0;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #d4af37;
+            text-shadow: 3px 3px 0 #000000;
+        }
+        .cover-overlay h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            font-size: 32px;
+            letter-spacing: 6px;
+            border-top: 2px solid #d4af37;
+            border-bottom: 2px solid #d4af37;
+            padding: 15px 30px;
+            margin: 20px 0;
+            text-transform: uppercase;
+            color: #f4ecd6;
+        }
+        .cover-overlay .subtitle {
+            font-size: 20px;
+            font-style: italic;
+            color: #f4ecd6;
+            margin: 20px 0;
+        }
+        .cover-overlay .place {
+            font-size: 18px;
+            margin-top: 40px;
+            color: #d4af37;
+            border-top: 1px solid #d4af37;
+            padding-top: 15px;
+            width: 70%;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Páginas internas */
+        .inner-page h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 36px;
+            text-align: center;
+            margin: 0 0 5px 0;
+            color: #2b1b0e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #8b5a2b;
+            padding-bottom: 5px;
+        }
+        .inner-page .translation {
+            text-align: center;
+            font-style: italic;
+            font-size: 16px;
+            color: #6b4f3a;
+            margin-bottom: 25px;
+        }
+        .inner-page .capitular {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 70px;
+            float: left;
+            line-height: 0.8;
+            margin-right: 8px;
+            margin-top: 5px;
+            color: #8b4513;
+        }
+        .inner-page p {
+            margin-bottom: 1.2em;
+            text-indent: 2em;
+            clear: both;
+        }
+        .inner-page .traducao {
+            font-style: italic;
+            color: #6b4f3a;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-indent: 0;
+            border-left: 2px solid #b59d7a;
+            padding-left: 15px;
+        }
+
+        /* ASSINATURAS E RODAPÉ – para usar dentro da última página */
+        .assinaturas {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+        }
+        .assinaturas div {
+            text-align: center;
+            width: 40%;
+        }
+        .assinaturas .linha-assinatura {
+            border-top: 2px solid #8b5a2b;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        .assinaturas p.nome {
+            font-weight: 700;
+            font-size: 22px;
+            margin: 0;
+        }
+        .assinaturas p.cargo {
+            font-style: italic;
+            color: #6b4f3a;
+            margin: 5px 0 0;
+        }
+        .footer {
+            font-size: 12px;
+            color: #8b7a6a;
+            text-align: center;
+            border-top: 1px dashed #b59d7a;
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+
+        /* SETAS DE NAVEGAÇÃO */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139,90,43,0.8);
+            color: #f4ecd6;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid #d4af37;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            transition: 0.2s;
+            z-index: 200;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        .nav-arrow:hover {
+            background: #a5713a;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .arrow-left {
+            left: 10px;
+        }
+        .arrow-right {
+            right: 10px;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="pages" id="pages">
+            <!-- CAPA FRONTAL (página 0) – COM TEXTO DOURADO -->
+            <div class="page cover cover-front active" id="page0" data-page="">
+                <img src="https://i.imgur.com/XVmOcpw.jpeg" alt="Capa do Livro" class="cover-image" onerror="this.style.display='none'; this.parentElement.style.background='#3b2b1a';">
+                <div class="cover-overlay">
+                    <h1>IL CODICE<br>DELL'OMERTÀ</h1>
+                    <h2>LA LEGGE DELLA FAMIGLIA</h2>
+                    <p class="subtitle">“Nel sangue è scritto, col silenzio è suggellato.”</p>
+                    <div style="margin: 20px 0;">
+                        <p style="font-size: 22px;">Anno Domini 2026</p>
+                    </div>
+                    <div class="place">FAMIGLIA CALABRIA</div>
+                </div>
+            </div>
+
+            <!-- PÁGINA 1 – OMERTÀ -->
+            <div class="page inner-page" id="page1" data-page="1">
+                <h3>CAPITOLO I · OMERTÀ</h3>
+                <div class="translation">(O Voto de Silêncio)</div>
+                <p><span class="capitular">Q</span>uesta è la prima e l'ultima legge. La bocca chiusa non condanna nessuno. Contro lo Stato, la nostra unica arma e la nostra unica difesa è il silenzio disciplinato. L'infamità è l'unico peccato che non può e non sarà perdonato. Se catturato, un uomo di questa Famiglia ha una sola frase: <strong>"Non parlo senza il mio avvocato."</strong> Il suo silenzio è lo scudo dei suoi fratelli. La pena per la sua rottura è la morte.</p>
+                <p class="traducao">Esta é a primeira e a última lei. A boca fechada não condena ninguém. Contra o Estado, nossa única arma e nossa única defesa é o silêncio disciplinado. A delação é o único pecado que não pode e não será perdoado. Se capturado, um homem desta Família tem uma única frase: <strong>"Não falo sem meu advogado."</strong> Seu silêncio é o escudo de seus irmãos. A pena para sua quebra é a morte.</p>
+                <p><span class="capitular">L</span>'omertà non è solo per chi viene arrestato. È per ogni momento della vita. Gli affari della famiglia non si discutono con nessuno — non con la moglie, non con i figli, non con gli amici. Il silenzio è lo scudo che ci protegge tutti.</p>
+                <p class="traducao">A omertà não é só para quem é preso. É para cada momento da vida. Os negócios da família não se discutem com ninguém — nem com a esposa, nem com os filhos, nem com os amigos. O silêncio é o escudo que nos protege a todos.</p>
+            </div>
+
+            <!-- PÁGINA 2 – RISPETTO -->
+            <div class="page inner-page" id="page2" data-page="2">
+                <h3>CAPITOLO II · RISPETTO</h3>
+                <div class="translation">(O Voto de Hierarquia)</div>
+                <p><span class="capitular">L</span>a Famiglia è una monarchia, non una repubblica. La volontà del Don è la volontà di Dio. La parola di un Capo è l'estensione della volontà del Don. L'insubordinazione è un cancro che sarà estirpato senza misericordia. Mettere in discussione un ordine è mettere in discussione la fondazione stessa della Famiglia. La pena è l'umiliazione e il dolore; la sfida diretta è tradimento.</p>
+                <p class="traducao">A Família é uma monarquia, não uma república. A vontade do Don é a vontade de Deus. A palavra de um Chefe é a extensão da vontade do Don. A insubordinação é um câncer que será extirpado sem misericórdia. Questionar uma ordem é questionar a própria fundação da Família. A pena é a humilhação e a dor; o desafio direto é traição.</p>
+            </div>
+
+            <!-- PÁGINA 3 – ONORE -->
+            <div class="page inner-page" id="page3" data-page="3">
+                <h3>CAPITOLO III · ONORE</h3>
+                <div class="translation">(O Voto de Honra)</div>
+                <p><span class="capitular">N</span>on siamo gangster di strada. Siamo Uomini d'Onore. La nostra risposta agli insulti dei nemici inferiori è l'indifferenza calcolata. La rabbia è un lusso; la rappresaglia è un atto di chirurgia. Un attacco a un fratello è un attacco a tutti. La Famiglia non abbandona i suoi. Mai.</p>
+                <p class="traducao">Não somos gangsters de rua. Somos Homens de Honra. Nossa resposta aos insultos de inimigos inferiores é a indiferença calculada. A raiva é um luxo; a retaliação é um ato de cirurgia. Um ataque a um irmão é um ataque a todos. A Família não abandona os seus. Nunca.</p>
+            </div>
+
+            <!-- PÁGINA 4 – LA DECIMA -->
+            <div class="page inner-page" id="page4" data-page="4">
+                <h3>CAPITOLO IV · LA DECIMA</h3>
+                <div class="translation">(O Voto ao Tesouro)</div>
+                <p><span class="capitular">O</span>gni profitto appartiene alla Famiglia. Ciò che un Soldato guadagna in nome della Famiglia, lo consegna intatto al Don. La lealtà non è comprata con uno stipendio; è ricompensata con un <strong>regalo</strong>, una parte che il Don, nella sua saggezza, concede a coloro che lo meritano. Rubare alla Famiglia è un sacrilegio. La pena è la morte.</p>
+                <p class="traducao">Todo lucro pertence à Família. O que um Soldado ganha em nome da Família, ele entrega intacto ao Don. A lealdade não é comprada com um salário; é recompensada com um <strong>presente</strong>, uma parte que o Don, em sua sabedoria, concede àqueles que a merecem. Roubar da Família é um sacrilégio. A pena é a morte.</p>
+            </div>
+
+            <!-- PÁGINA 5 – LA MASCHERA -->
+            <div class="page inner-page" id="page5" data-page="5">
+                <h3>CAPITOLO V · LA MASCHERA</h3>
+                <div class="translation">(O Voto da Máscara)</div>
+                <p><span class="capitular">L</span>a nostra più grande arma non è il fucile, ma la legge. La nostra facciata — i nostri affari, la nostra avvocatura, la nostra influenza politica — è la nostra maschera di legittimità. Profanare questa maschera con atti imprudenti è un crimine contro la sopravvivenza della Famiglia. Usiamo la legge dello Stato come uno scudo per proteggerci e come una spada per distruggere i nostri nemici.</p>
+                <p class="traducao">Nossa maior arma não é o fuzil, mas a lei. Nossa fachada — nossos negócios, nossa advocacia, nossa influência política — é nossa máscara de legitimidade. Profanar esta máscara com atos imprudentes é um crime contra a sobrevivência da Família. Usamos a lei do Estado como um escudo para nos proteger e como uma espada para destruir nossos inimigos.</p>
+            </div>
+
+            <!-- PÁGINA 6 – IL GIURAMENTO + ASSINATURAS + RODAPÉ (TUDO NA MESMA PÁGINA) -->
+            <div class="page inner-page" id="page6" data-page="6">
+                <h3>CAPITOLO VI · IL GIURAMENTO</h3>
+                <div class="translation">(O Juramento de Sangue)</div>
+                <p><span class="capitular">Q</span>uando un uomo viene accolto nella Famiglia, tre uomini d'onore lo attendono. Il più anziano gli punge il dito, e il suo sangue stilla sull'immagine di un santo. La piccola immagine viene posta nelle sue mani e data alle fiamme. Mentre brucia, l'iniziato giura: "Come brucia questo santo, così brucerà la mia carne se tradirò il segreto della Cosa Nostra."</p>
+                <p class="traducao">Quando um homem é acolhido na Família, três homens de honra o aguardam. O mais velho fura seu dedo, e seu sangue pinga sobre a imagem de um santo. A pequena imagem é posta em suas mãos e incendiada. Enquanto queima, o iniciado jura: "Assim como queima este santo, assim queimará minha carne se eu trair o segredo da Cosa Nostra."</p>
+
+                <!-- Assinaturas duplas com linha -->
+                <div class="assinaturas">
+                    <div>
+                        <div class="linha-assinatura"></div>
+                        <p class="nome">Don Giuseppe Calabria</p>
+                        <p class="cargo">Capofamiglia</p>
+                    </div>
+                    <div>
+                        <div class="linha-assinatura"></div>
+                        <p class="nome">Avv. Virgilio Calabria</p>
+                        <p class="cargo">Consigliere</p>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>Documento Interno della Famiglia Calabria — Solo per occhi giurati</p>
+                    <p>Archivio Segreto · Anno I dell'Omertà</p>
+                </div>
+            </div>
+
+            <!-- CAPA TRASEIRA (última página) – APENAS IMAGEM, SEM ROLAGEM -->
+            <div class="page cover" id="page7" data-page="">
+                <img src="https://i.imgur.com/XVmOcpw.jpeg" alt="Contracapa" class="cover-image" onerror="this.style.display='none'; this.parentElement.style.background='#3b2b1a'; this.parentElement.innerHTML='<div style=\"color:#f4ecd6; display:flex; align-items:center; justify-content:center; height:100%;\">Imagem não carregada</div>';">
+            </div>
+        </div>
+
+        <!-- SETAS DE NAVEGAÇÃO -->
+        <div class="nav-arrow arrow-left" id="prevArrow">←</div>
+        <div class="nav-arrow arrow-right" id="nextArrow">→</div>
+
+        <audio id="themeAudio" src="Poderosochefao.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        (function() {
+            const pages = document.querySelectorAll('.page');
+            let currentPage = 0;
+            const totalPages = pages.length;
+            const prevArrow = document.getElementById('prevArrow');
+            const nextArrow = document.getElementById('nextArrow');
+            const audio = document.getElementById('themeAudio');
+            let musicStarted = false;
+
+            function showPage(index) {
+                pages.forEach(page => page.classList.remove('active'));
+                pages[index].classList.add('active');
+            }
+
+            prevArrow.addEventListener('click', function() {
+                if (currentPage > 0) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+
+            nextArrow.addEventListener('click', function() {
+                if (currentPage < totalPages - 1) {
+                    currentPage++;
+                    showPage(currentPage);
+                    // Inicia a música ao sair da capa frontal
+                    if (currentPage === 1 && !musicStarted) {
+                        audio.play().catch(e => console.log('Autoplay bloqueado:', e));
+                        musicStarted = true;
+                    }
+                }
+            });
+
+            // Começa pela capa frontal
+            showPage(0);
+        })();
+    </script>
+</body>
+</html>
