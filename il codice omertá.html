@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Il Codice dell'Omertà</title>
+    <title>Il Codice dell'Omertà · Famiglia Calabria</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400&display=swap');
         
@@ -68,7 +68,6 @@
             pointer-events: auto;
         }
 
-        /* Numeração das páginas (exceto capas) */
         .page:not(.cover)::after {
             content: attr(data-page);
             position: absolute;
@@ -80,7 +79,6 @@
             font-weight: 300;
         }
 
-        /* CAPAS (sem numeração, sem rolagem) */
         .cover {
             background: none !important;
             padding: 0 !important;
@@ -94,7 +92,6 @@
             filter: sepia(0.5) contrast(1.2) brightness(0.8);
         }
 
-        /* CAPA INICIAL COM TEXTO DOURADO */
         .cover-front {
             position: relative;
         }
@@ -157,7 +154,6 @@
             letter-spacing: 3px;
         }
 
-        /* Páginas internas */
         .inner-page h3 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 700;
@@ -202,7 +198,6 @@
             padding-left: 15px;
         }
 
-        /* ASSINATURAS COM IMAGENS – CORREÇÃO: FIRMAS ACIMA DA LINHA */
         .assinaturas {
             margin-top: 30px;
             display: flex;
@@ -224,9 +219,9 @@
         }
         .assinaturas img {
             position: absolute;
-            top: 0;               /* allinea il bordo superiore al top del contenitore */
+            top: 0;
             left: 50%;
-            transform: translate(-50%, -100%); /* centra orizzontalmente e sposta verso l'alto di tutta l'altezza */
+            transform: translate(-50%, -100%);
             width: 150px;
             height: auto;
             z-index: 10;
@@ -255,7 +250,6 @@
             margin-top: 20px;
         }
 
-        /* SETAS DE NAVEGAÇÃO */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -296,7 +290,7 @@
 <body>
     <div class="book-container">
         <div class="pages" id="pages">
-            <!-- CAPA FRONTAL (página 0) – COM TEXTO DOURADO -->
+            <!-- CAPA FRONTAL -->
             <div class="page cover cover-front active" id="page0" data-page="">
                 <img src="https://i.imgur.com/XVmOcpw.jpeg" alt="Capa do Livro" class="cover-image" onerror="this.style.display='none'; this.parentElement.style.background='#3b2b1a';">
                 <div class="cover-overlay">
@@ -304,9 +298,9 @@
                     <h2>LA LEGGE DELLA FAMIGLIA</h2>
                     <p class="subtitle">“Nel sangue è scritto, col silenzio è suggellato.”</p>
                     <div style="margin: 20px 0;">
-                        <p style="font-size: 22px;">Anno Domini 2026</p>
+                        <p style="font-size: 22px;">San Paolo · Anno Domini 2026</p>
                     </div>
-                    <div class="place">FAMIGLIA CALABRIA</div>
+                    <div class="place">FAMIGLIA CALABRIA · BRASILE</div>
                 </div>
             </div>
 
@@ -342,6 +336,7 @@
                 <div class="translation">(O Voto ao Tesouro)</div>
                 <p><span class="capitular">O</span>gni profitto appartiene alla Famiglia. Ciò che un Soldato guadagna in nome della Famiglia, lo consegna intatto al Don. La lealtà non è comprata con uno stipendio; è ricompensata con un <strong>regalo</strong>, una parte che il Don, nella sua saggezza, concede a coloro che lo meritano. Rubare alla Famiglia è un sacrilegio. La pena è la morte.</p>
                 <p class="traducao">Todo lucro pertence à Família. O que um Soldado ganha em nome da Família, ele entrega intacto ao Don. A lealdade não é comprada com um salário; é recompensada com um <strong>presente</strong>, uma parte que o Don, em sua sabedoria, concede àqueles que a merecem. Roubar da Família é um sacrilégio. A pena é a morte.</p>
+                <p class="traducao">No Brasil, a Décima virá dos negócios controlados: postos de gasolina, lava-rápidos, comércios da Zona Sul, construção civil e propinas de jogos de azar. Nada será feito sem a bênção do Don.</p>
             </div>
 
             <!-- PÁGINA 5 – LA MASCHERA -->
@@ -350,16 +345,74 @@
                 <div class="translation">(O Voto da Máscara)</div>
                 <p><span class="capitular">L</span>a nostra più grande arma non è il fucile, ma la legge. La nostra facciata — i nostri affari, la nostra avvocatura, la nostra influenza politica — è la nostra maschera di legittimità. Profanare questa maschera con atti imprudenti è un crimine contro la sopravvivenza della Famiglia. Usiamo la legge dello Stato come uno scudo per proteggerci e come una spada per distruggere i nostri nemici.</p>
                 <p class="traducao">Nossa maior arma não é o fuzil, mas a lei. Nossa fachada — nossos negócios, nossa advocacia, nossa influência política — é nossa máscara de legitimidade. Profanar esta máscara com atos imprudentes é um crime contra a sobrevivência da Família. Usamos a lei do Estado como um escudo para nos proteger e como uma espada para destruir nossos inimigos.</p>
+                <p class="traducao">Ogni uomo deve avere un'occupazione legittima. Avvocato, commerciante, costruttore, proprietario di ristorante. La maschera va indossata ogni giorno.</p>
+                <p class="traducao">Cada homem deve ter uma ocupação legítima. Advogado, comerciante, construtor, dono de restaurante. A máscara deve ser usada todos os dias.</p>
             </div>
 
-            <!-- PÁGINA 6 – IL GIURAMENTO + ASSINATURAS + RODAPÉ -->
+            <!-- PÁGINA 6 – IL GIURAMENTO -->
             <div class="page inner-page" id="page6" data-page="6">
                 <h3>CAPITOLO VI · IL GIURAMENTO</h3>
                 <div class="translation">(O Juramento de Sangue)</div>
-                <p><span class="capitular">Q</span>uando un uomo viene accolto nella Famiglia, tre uomini d'onore lo attendono. Il più anziano gli punge il dito, e il suo sangue stilla sull'immagine di un santo. La piccola immagine viene posta nelle sue mani e data alle fiamme. Mentre brucia, l'iniziato giura: "Come brucia questo santo, così brucerà la mia carne se tradirò il segreto della Cosa Nostra."</p>
-                <p class="traducao">Quando um homem é acolhido na Família, três homens de honra o aguardam. O mais velho fura seu dedo, e seu sangue pinga sobre a imagem de um santo. A pequena imagem é posta em suas mãos e incendiada. Enquanto queima, o iniciado jura: "Assim como queima este santo, assim queimará minha carne se eu trair o segredo da Cosa Nostra."</p>
+                <p><span class="capitular">Q</span>uando un uomo viene accolto nella Famiglia, tre uomini d'onore lo attendono. Il più anziano gli punge il dito, e il suo sangue stilla sull'immagine di un santo. La piccola immagine viene posta nelle sue mani e data alle fiamme. Mentre brucia, l'iniziato giura: "Come brucia questo santo, così brucerà la mia carne se tradirò il segreto della Cosa Nostra. Che la mia língua seque prima di consegnare un fratello."</p>
+                <p class="traducao">Quando um homem é acolhido na Família, três homens de honra o aguardam. O mais velho fura seu dedo, e seu sangue pinga sobre a imagem de um santo. A pequena imagem é posta em suas mãos e incendiada. Enquanto queima, o iniciado jura: "Assim como queima este santo, assim queimará minha carne se eu trair o segredo da Cosa Nostra. Que minha língua seque antes de entregar um irmão."</p>
+            </div>
 
-                <!-- Assinaturas com imagens (agora corretamente posicionadas acima da linha) -->
+            <!-- PÁGINA 7 – LA PRESENTAZIONE -->
+            <div class="page inner-page" id="page7" data-page="7">
+                <h3>CAPITOLO VII · LA PRESENTAZIONE</h3>
+                <div class="translation">(O Voto da Apresentação)</div>
+                <p><span class="capitular">N</span>essun uomo può presentarsi da solo a un altro membro della Famiglia. Deve essere presentato da un terzo, già giurato. Chi aggira questa regola sarà considerato un infiltrato. La parola d'ordine e i segni di riconoscimento vengono cambiati ogni tre mesi e comunicati solo ai membri attivi. Mai scriverli.</p>
+                <p class="traducao">Nenhum homem pode se apresentar sozinho a outro membro da Família. Deve ser apresentado por um terceiro, já jurado. Quem burlar esta regra será considerado infiltrado. A senha e os sinais de reconhecimento são mudados a cada três meses e comunicados apenas aos membros ativos. Nunca escrevê-los.</p>
+                <p><span class="capitular">I</span>ncontri con potenziali affiliati avvengono solo in luoghi sicuri, con almeno due membri di fiducia presenti. La presentazione è un atto sacro: chi presenta garantisce con la propria vita per il nuovo.</p>
+                <p class="traducao">Encontros com potenciais afiliados ocorrem apenas em locais seguros, com pelo menos dois membros de confiança presentes. A apresentação é um ato sagrado: quem apresenta garante com a própria vida pelo novo.</p>
+            </div>
+
+            <!-- PÁGINA 8 – LA CONDOTTA -->
+            <div class="page inner-page" id="page8" data-page="8">
+                <h3>CAPITOLO VIII · LA CONDOTTA</h3>
+                <div class="translation">(O Voto da Conduta)</div>
+                <p><span class="capitular">U</span>n Uomo d'Onore non eccede nel vino. Non gioca d'azzardo. Non frequenta locali dove la sua lingua potrebbe sciogliersi. Non guarda le donne dei fratelli. Non tocca le mogli degli amici nostri. Una passione fuori dal matrimonio è una ferita aperta nella corazza della Famiglia. Se porta scandalo o ricatto, il colpevole sarà punito.</p>
+                <p class="traducao">Um Homem de Honra não excede no vinho. Não joga. Não frequenta lugares onde sua língua possa se soltar. Não olha para as mulheres dos irmãos. Não toca nas esposas dos nossos amigos. Uma paixão fora do casamento é uma ferida aberta na armadura da Família. Se trouxer escândalo ou chantagem, o culpado será punido.</p>
+                <p><span class="capitular">L</span>a Famiglia non dimentica: un uomo ubriaco è un uomo morto. Un uomo indebitato per il gioco è un uomo ricattabile. La sobrietà e la disciplina sono armi.</p>
+                <p class="traducao">A Família não esquece: um homem bêbado é um homem morto. Um homem endividado pelo jogo é um homem chantageável. A sobriedade e a disciplina são armas.</p>
+            </div>
+
+            <!-- PÁGINA 9 – I LEGAMI -->
+            <div class="page inner-page" id="page9" data-page="9">
+                <h3>CAPITOLO IX · I LEGAMI</h3>
+                <div class="translation">(O Voto dos Laços)</div>
+                <p><span class="capitular">N</span>on può entrare nella Famiglia chi ha un parente nelle forze dell'ordine. Non può entrare chi ha legami con facções inimiche. La lealtà deve essere senza ombre. Se un legame proibito viene scoperto dopo il giuramento, l'uomo verrà giudicato e potrà essere espulso o peggio.</p>
+                <p class="traducao">Não pode entrar na Família quem tem parente nas forças da ordem. Não pode entrar quem tem laços com facções inimigas. A lealdade deve ser sem sombras. Se um vínculo proibido for descoberto após o juramento, o homem será julgado e poderá ser expulso ou pior.</p>
+                <p><span class="capitular">I</span>l sangue chiama sangue. La Famiglia viene prima di tutto.</p>
+                <p class="traducao">O sangue chama sangue. A Família vem antes de tudo.</p>
+            </div>
+
+            <!-- PÁGINA 10 – IL TERRITORIO -->
+            <div class="page inner-page" id="page10" data-page="10">
+                <h3>CAPITOLO X · IL TERRITORIO</h3>
+                <div class="translation">(O Voto do Território)</div>
+                <p><span class="capitular">S</span>an Paolo non è la Sicilia. Qui operano facções che non conoscono onore — solo violenza. La Famiglia Calabria non si coinvolge in guerre territoriali con altre facções senza autorizzazione espressa del Don. La nostra forza è nell'invisibilità, non nello scontro diretto. Coltiviamo relazioni con politici, delegati, ufficiali. Pagiamo chi ci protegge, non chi ci combatte.</p>
+                <p class="traducao">São Paulo não é a Sicília. Aqui operam facções que não conhecem honra — só violência. A Família Calabria não se envolve em guerras territoriais com outras facções sem autorização expressa do Don. Nossa força está na invisibilidade, não no confronto direto. Cultivamos relações com políticos, delegados, oficiais. Pagamos quem nos protege, não quem nos combate.</p>
+                <p><span class="capitular">I</span>l territorio della Famiglia è dove scorrono i nostri soldi: Zona Sul, costruzioni, appalti pubblici, commercio "protegido". Nessun soldato agisca in aree non autorizzate.</p>
+                <p class="traducao">O território da Família é onde corre nosso dinheiro: Zona Sul, construções, licitações públicas, comércio "protegido". Nenhum soldado aja em áreas não autorizadas.</p>
+            </div>
+
+            <!-- PÁGINA 11 – LA TECNOLOGIA -->
+            <div class="page inner-page" id="page11" data-page="11">
+                <h3>CAPITOLO XI · LA TECNOLOGIA</h3>
+                <div class="translation">(O Voto Digital)</div>
+                <p><span class="capitular">N</span>essun affare della Famiglia può essere discusso per telefono, WhatsApp, Signal, Telegram o qualsiasi altra piattaforma digitale. I cellulari sono strumenti del nemico. Le intercettazioni sono il nostro più grande pericolo. Il silenzio digitale è l'estensione del silenzio dell'anima. Gli incontri sono solo faccia a faccia, in luoghi sicuri e senza dispositivi elettronici.</p>
+                <p class="traducao">Nenhum assunto da Família pode ser discutido por telefone, WhatsApp, Signal, Telegram ou qualquer outra plataforma digital. Celulares são ferramentas do inimigo. As interceptações são nosso maior perigo. O silêncio digital é a extensão do silêncio da alma. Os encontros são apenas cara a cara, em locais seguros e sem dispositivos eletrônicos.</p>
+                <p><span class="capitular">C</span>hi usa i social network per vantarsi o minacciare sarà punito. La Famiglia non esiste sui social. Siamo ombra.</p>
+                <p class="traducao">Quem usa redes sociais para se vangloriar ou ameaçar será punido. A Família não existe nas redes. Somos sombra.</p>
+            </div>
+
+            <!-- PÁGINA 12 – ASSINATURAS FINAIS (NOVA) -->
+            <div class="page inner-page" id="page12" data-page="12">
+                <h3 style="border-bottom: none; margin-bottom: 40px;">IL CODICE È SCRITTO<br><span style="font-size: 24px; font-style: italic;">(O Código está escrito)</span></h3>
+                
+                <p style="text-align: center; margin-bottom: 50px;">Questo documento contiene le undici leggi della Famiglia Calabria. Chi lo legge con occhi non giurati sarà punito. Chi lo segue con cuore sincero sarà protetto.</p>
+                
                 <div class="assinaturas">
                     <div>
                         <div class="linha-assinatura"></div>
@@ -377,12 +430,12 @@
 
                 <div class="footer">
                     <p>Documento Interno della Famiglia Calabria — Solo per occhi giurati</p>
-                    <p>Archivio Segreto · Anno I dell'Omertà</p>
+                    <p>Archivio Segreto · San Paolo · Anno I dell'Omertà</p>
                 </div>
             </div>
 
-            <!-- CAPA TRASEIRA (última página) – APENAS IMAGEM -->
-            <div class="page cover" id="page7" data-page="">
+            <!-- CAPA TRASEIRA -->
+            <div class="page cover" id="page13" data-page="">
                 <img src="https://i.imgur.com/XVmOcpw.jpeg" alt="Contracapa" class="cover-image" onerror="this.style.display='none'; this.parentElement.style.background='#3b2b1a'; this.parentElement.innerHTML='<div style=\"color:#f4ecd6; display:flex; align-items:center; justify-content:center; height:100%;\">Imagem não carregada</div>';">
             </div>
         </div>
@@ -420,7 +473,6 @@
                 if (currentPage < totalPages - 1) {
                     currentPage++;
                     showPage(currentPage);
-                    // Inicia a música ao sair da capa frontal
                     if (currentPage === 1 && !musicStarted) {
                         audio.play().catch(e => console.log('Autoplay bloqueado:', e));
                         musicStarted = true;
@@ -428,7 +480,6 @@
                 }
             });
 
-            // Começa pela capa frontal
             showPage(0);
         })();
     </script>
