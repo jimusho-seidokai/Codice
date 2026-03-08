@@ -202,7 +202,7 @@
             padding-left: 15px;
         }
 
-        /* ASSINATURAS E RODAPÉ – para usar dentro da última página */
+        /* ASSINATURAS COM IMAGENS */
         .assinaturas {
             margin-top: 30px;
             display: flex;
@@ -213,16 +213,33 @@
         .assinaturas div {
             text-align: center;
             width: 40%;
+            position: relative;
         }
         .assinaturas .linha-assinatura {
             border-top: 2px solid #8b5a2b;
             margin-bottom: 8px;
             width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .assinaturas img {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: auto;
+            z-index: 10;
+            opacity: 0.9;
+            filter: grayscale(100%) contrast(1.2);
+            pointer-events: none;
         }
         .assinaturas p.nome {
             font-weight: 700;
             font-size: 22px;
-            margin: 0;
+            margin: 5px 0 0;
+            position: relative;
+            z-index: 5;
         }
         .assinaturas p.cargo {
             font-style: italic;
@@ -335,22 +352,24 @@
                 <p class="traducao">Nossa maior arma não é o fuzil, mas a lei. Nossa fachada — nossos negócios, nossa advocacia, nossa influência política — é nossa máscara de legitimidade. Profanar esta máscara com atos imprudentes é um crime contra a sobrevivência da Família. Usamos a lei do Estado como um escudo para nos proteger e como uma espada para destruir nossos inimigos.</p>
             </div>
 
-            <!-- PÁGINA 6 – IL GIURAMENTO + ASSINATURAS + RODAPÉ (TUDO NA MESMA PÁGINA) -->
+            <!-- PÁGINA 6 – IL GIURAMENTO + ASSINATURAS + RODAPÉ -->
             <div class="page inner-page" id="page6" data-page="6">
                 <h3>CAPITOLO VI · IL GIURAMENTO</h3>
                 <div class="translation">(O Juramento de Sangue)</div>
                 <p><span class="capitular">Q</span>uando un uomo viene accolto nella Famiglia, tre uomini d'onore lo attendono. Il più anziano gli punge il dito, e il suo sangue stilla sull'immagine di un santo. La piccola immagine viene posta nelle sue mani e data alle fiamme. Mentre brucia, l'iniziato giura: "Come brucia questo santo, così brucerà la mia carne se tradirò il segreto della Cosa Nostra."</p>
                 <p class="traducao">Quando um homem é acolhido na Família, três homens de honra o aguardam. O mais velho fura seu dedo, e seu sangue pinga sobre a imagem de um santo. A pequena imagem é posta em suas mãos e incendiada. Enquanto queima, o iniciado jura: "Assim como queima este santo, assim queimará minha carne se eu trair o segredo da Cosa Nostra."</p>
 
-                <!-- Assinaturas duplas com linha -->
+                <!-- Assinaturas com imagens -->
                 <div class="assinaturas">
                     <div>
                         <div class="linha-assinatura"></div>
+                        <img src="assinatura_giuseppe.png" alt="Assinatura Don Giuseppe Calabria">
                         <p class="nome">Don Giuseppe Calabria</p>
                         <p class="cargo">Capofamiglia</p>
                     </div>
                     <div>
                         <div class="linha-assinatura"></div>
+                        <img src="assinatura_virgilio.png" alt="Assinatura Avv. Virgilio Calabria">
                         <p class="nome">Avv. Virgilio Calabria</p>
                         <p class="cargo">Consigliere</p>
                     </div>
@@ -362,7 +381,7 @@
                 </div>
             </div>
 
-            <!-- CAPA TRASEIRA (última página) – APENAS IMAGEM, SEM ROLAGEM -->
+            <!-- CAPA TRASEIRA (última página) – APENAS IMAGEM -->
             <div class="page cover" id="page7" data-page="">
                 <img src="https://i.imgur.com/XVmOcpw.jpeg" alt="Contracapa" class="cover-image" onerror="this.style.display='none'; this.parentElement.style.background='#3b2b1a'; this.parentElement.innerHTML='<div style=\"color:#f4ecd6; display:flex; align-items:center; justify-content:center; height:100%;\">Imagem não carregada</div>';">
             </div>
